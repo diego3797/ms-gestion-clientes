@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /ms-gestion-clientes/v1
+
+logging:
+  level:
+    root: INFO
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+spring:
+  application:
+    name: ms-gestion-clientes-v1
+  datasource:
+    url: jdbc:mysql://localhost:3306/bdtestseek
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: true
+    locations: classpath:db/migracion
+    baseline-on-migrate: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+      show-sql: true
+    hibernate:
+      ddl-auto: update
