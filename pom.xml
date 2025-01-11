@@ -89,12 +89,12 @@
 			<artifactId>flyway-core</artifactId>
 			<version>9.22.0</version>
 		</dependency>
-		<!--
+
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-mysql</artifactId>
 			<version>9.22.0</version>
-		</dependency>-->
+		</dependency>
 	</dependencies>
 
 	<build>
