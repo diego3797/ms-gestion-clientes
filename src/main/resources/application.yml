@@ -15,11 +15,20 @@ logging:
               BasicBinder: TRACE
 spring:
   application:
-    name: ms-gestion-clientes-v1
+    name: app-gestion-clientes
+  retry:
+    enabled: true
   datasource:
-    url: jdbc:mysql://localhost:3306/bdtestseek
-    username: root
-    password: root
+    url: ${DB_URL:jdbc:mysql://localhost:3306/bdtestseek}
+    username: ${DB_USER_NAME:root}
+    password: ${DB_PASSWORD:root}
+    initialization-mode: always
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 20000
     driver-class-name: com.mysql.cj.jdbc.Driver
   flyway:
     enabled: true
