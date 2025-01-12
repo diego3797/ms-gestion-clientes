@@ -1,10 +1,7 @@
 package com.prueba.ms_gestion_clientes.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-
-import java.util.Date;
 
 @Data
 public class ClienteDTO {

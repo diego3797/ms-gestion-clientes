@@ -6,6 +6,10 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * Representa un cliente en el sistema de gestión de clientes.
+ * Esta clase está mapeada a la tabla "clientes" en la base de datos.
+ */
 @Entity
 @Table(name = "clientes")
 @Data

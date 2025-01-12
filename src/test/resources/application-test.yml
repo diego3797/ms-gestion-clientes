@@ -1,0 +1,3 @@
+spring:
+  security:
+    active: test

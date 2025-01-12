@@ -26,24 +26,34 @@ public class ClientController {
     @Autowired
     private ClienteMapper clienteMapper;
 
+
+    /**
+     * Crea un nuevo cliente.
+     *
+     * @param clienteDto El DTO del cliente a crear.
+     * @return El DTO del cliente creado.
+     */
     @PostMapping
     public ResponseEntity<ClienteDTO> createClient(@RequestBody ClienteDTO clienteDto) {
         try {
             Cliente cli = clienteMapper.toCliente(clienteDto);
-            Cliente cliReg = clienteService.create(cli);
-            ClienteDTO cliDto = clienteMapper.toClienteDTOCreate(cliReg);
+            ClienteDTO cliDto = clienteMapper.toClienteDTOCreate(clienteService.create(cli));
             return ResponseEntity.status(HttpStatus.CREATED).body(cliDto);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Error al crear el cliente", e);
         }
     }
 
+    /**
+     * Obtiene una lista de todos los clientes.
+     *
+     * @return Una lista de DTOs de clientes.
+     */
     @GetMapping("/listar")
     public ResponseEntity<List<ClienteDTO>> getAllClients() {
         try {
-            List<Cliente> clientes = clienteService.findAll();  // Obtener todos los clientes
+            List<Cliente> clientes = clienteService.findAll();
 
-            // Convertir los clientes a DTO y calcular la fecha estimada de vida
             List<ClienteDTO> clientesDTO = clientes.stream().map(cliente -> {
                 ClienteDTO clienteDTO = new ClienteDTO();
                 clienteDTO.setId(cliente.getId());
@@ -70,11 +80,16 @@ public class ClientController {
 
     }
 
+    /**
+     * Obtiene las métricas de los clientes.
+     *
+     * @return Una cadena con el promedio de edad y la desviación estándar.
+     */
     @GetMapping("/metricas")
     public ResponseEntity<String> getMetrics() {
         try {
-            Optional<Double> averageAge = clienteService.findAverageAge();
-            Optional<Double> standardDeviation = clienteService.findAgeStandardDeviation();
+            Optional<Double> averageAge = clienteService.obtenerEdadPromedio();
+            Optional<Double> standardDeviation = clienteService.obtenerEdadDesviacionEstandar();
 
             if (averageAge.isPresent() && standardDeviation.isPresent()) {
                 return ResponseEntity.ok(
