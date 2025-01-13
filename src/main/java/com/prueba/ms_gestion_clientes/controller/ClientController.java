@@ -4,6 +4,11 @@ import com.prueba.ms_gestion_clientes.dto.ClienteDTO;
 import com.prueba.ms_gestion_clientes.model.Cliente;
 import com.prueba.ms_gestion_clientes.service.ClienteService;
 import com.prueba.ms_gestion_clientes.utils.ClienteMapper;
+import io.swagger.annotations.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +38,22 @@ public class ClientController {
      * @param clienteDto El DTO del cliente a crear.
      * @return El DTO del cliente creado.
      */
+    @Operation(
+            operationId = "createClient",
+            summary = "Create a new client",
+            description = "Create a new client",
+            tags = { "client" },
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Successful operation",
+                            content = {
+                                    @Content(mediaType = "application/json",
+                                            schema = @Schema(implementation = ClienteDTO.class)),
+                                    @Content(mediaType = "application/xml",
+                                            schema = @Schema(implementation = ClienteDTO.class))
+                            }),
+                    @ApiResponse(responseCode = "405", description = "Invalid input")
+            }
+    )
     @PostMapping
     public ResponseEntity<ClienteDTO> createClient(@RequestBody ClienteDTO clienteDto) {
         try {
@@ -49,6 +70,17 @@ public class ClientController {
      *
      * @return Una lista de DTOs de clientes.
      */
+    @Operation(
+            operationId = "getAllClients",
+            summary = "List all clients",
+            description = "List all clients",
+            tags = { "client" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successful operation",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ClienteDTO.class)))
+            }
+    )
     @GetMapping("/listar")
     public ResponseEntity<List<ClienteDTO>> getAllClients() {
         try {
@@ -85,6 +117,17 @@ public class ClientController {
      *
      * @return Una cadena con el promedio de edad y la desviación estándar.
      */
+    @Operation(
+            operationId = "getMetrics",
+            summary = "Get metrics of clients",
+            description = "Get metrics of clients",
+            tags = { "client" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successful operation",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ClienteDTO.class)))
+            }
+    )
     @GetMapping("/metricas")
     public ResponseEntity<String> getMetrics() {
         try {

@@ -42,3 +42,7 @@ spring:
       show-sql: true
     hibernate:
       ddl-auto: update
+springfox:
+  documentation:
+    swagger-ui:
+      base-url: /swagger-ui
