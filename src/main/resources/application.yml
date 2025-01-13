@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /ms-gestion-clientes/v1
+
+logging:
+  level:
+    root: INFO
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+spring:
+  application:
+    name: app-gestion-clientes
+  retry:
+    enabled: true
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/bdtestseek}
+    username: ${DB_USER_NAME:root}
+    password: ${DB_PASSWORD:root}
+    initialization-mode: always
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 20000
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: true
+    locations: classpath:db/migracion
+    baseline-on-migrate: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+      show-sql: true
+    hibernate:
+      ddl-auto: update
+springfox:
+  documentation:
+    swagger-ui:
+      base-url: /swagger-ui

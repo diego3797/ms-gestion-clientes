@@ -1,0 +1,43 @@
+
+services:
+  db:
+    image: mysql:8.0.33
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: bdtestseek
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -proot || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  app-gestion-clientes:
+    image: dixgo/api-gestion-clientes:v1
+    container_name: ms-gestion-clientes
+    environment:
+      DB_URL: jdbc:mysql://db:3306/bdtestseek
+      DB_USER_NAME: root
+      DB_PASSWORD: 1234
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy      
+    networks:
+      - app-network
+    restart: on-failure
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
