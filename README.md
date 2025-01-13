@@ -8,8 +8,10 @@ Para su ejecucion, ejecutar en lineas de comando:
 ```sh
 docker-compose build
 
-docker-up build
+docker-compose up
 ```
+
+Asimismo, para sus pruebas en la carpeta raiz se adjunta el archivo Postman de la colleciton de los endpoints creados.
 
 Funcionalidades:
 
