@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "b18077f2-66de-4894-bf62-c9a5c0703949",
+		"name": "TestSEEK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8013224"
+	},
+	"item": [
+		{
+			"name": "Crear Cliente",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzM2NjUwODgzLCJleHAiOjE3MzY2NTQ0ODN9.Yw2uH4T6VWwUK8NZbQblYW93PKWAw7Xeh5vcY0CUttM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Joselin\",\r\n    \"apellidoPaterno\": \"Rios\",\r\n    \"apellidoMaterno\": \"Torres\",\r\n    \"edad\": 20,\r\n    \"fechaNacimiento\": \"1988-06-20\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ms-gestion-clientes/v1/cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ms-gestion-clientes",
+						"v1",
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Clientes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzM2NzAyNzk4LCJleHAiOjE3MzY3MDYzOTh9.F8csnaS7lYz0a-mZuADU-IhMJAxKim6hbipvmVCZSqU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ms-gestion-clientes/v1/cliente/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ms-gestion-clientes",
+						"v1",
+						"cliente",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Metricas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzM2NzAyNzk4LCJleHAiOjE3MzY3MDYzOTh9.F8csnaS7lYz0a-mZuADU-IhMJAxKim6hbipvmVCZSqU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ms-gestion-clientes/v1/cliente/metricas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ms-gestion-clientes",
+						"v1",
+						"cliente",
+						"metricas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ms-gestion-clientes/v1/auth/login?username=user&password=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ms-gestion-clientes",
+						"v1",
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
