@@ -11,7 +11,7 @@ docker-compose build
 docker-compose up
 ```
 
-Asimismo, para sus pruebas en la carpeta raiz se adjunta el archivo Postman de la colleciton de los endpoints creados.
+Asimismo, para sus pruebas en la carpeta raiz se adjunta el archivo Postman de la collecton de los endpoints creados.
 
 Funcionalidades:
 
